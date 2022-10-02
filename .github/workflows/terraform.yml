@@ -1,4 +1,4 @@
-name: Provision t3.micro EC2
+name: 'Terraform-apply'
 
 on:
   workflow_dispatch:
@@ -8,6 +8,7 @@ on:
         required: true
         default: ' '
         type: string
+
 jobs:
   terraform:
     name: 'Terraform'
@@ -15,6 +16,7 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID : ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
@@ -24,17 +26,27 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}      
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-      with:
-         terraform_wrapper: false
-    - name: Terraform plan
-        id:  plan
-        env:
-          TF_VAR_ec2_name:  "${{ github.event.inputs.ec2-name }}"
-        run: |
-          cd tf-example/
-          terraform init
-          terraform validate
-          terraform plan
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      id: init
+      run: terraform init
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      id: plan
+      if: github.event_name == 'push'
+      run: terraform plan -no-color
+      continue-on-error: true
+
+    - name: Terraform Plan Status
+      if: steps.plan.outcome == 'failure'
+      run: exit 1
+      # On push to "main", build or change infrastructure according to Terraform configuration files
+      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+    - name: Terraform Apply
+      id : apply
+      env:
+        TF_VAR_ec2_name: "${{ github.event.inputs.ec2-name }}"
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform apply -auto-approve -input=false
