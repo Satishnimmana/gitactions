@@ -29,8 +29,8 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
          terraform_wrapper: false
-    - name: Terraform Apply
-        id:   plan
+    - name: Terraform plan
+        id:  plan
         env:
           TF_VAR_ec2_name:  "${{ github.event.inputs.ec2-name }}"
         run: |
