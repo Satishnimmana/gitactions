@@ -37,6 +37,6 @@ resource "aws_instance" "myec2vm" {
   instance_type = "t2.micro"
   key_name      = "newkey"
 tags = {
-    Name = var.instance_name
+    Name = var.ec2_name
   }
 }

@@ -3,7 +3,7 @@ name: Provision t2.micro EC2
 on:
   workflow_dispatch:
     inputs:
-      instance_name:
+      ec2-name:
         description: EC2 name
         required: true
         default: 'App Server'
@@ -23,7 +23,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-        
+
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
       with:
@@ -31,7 +31,7 @@ jobs:
     - name: Terraform Apply
       id:   apply
       env:
-        TF_VAR_instance_name:  "${{ github.event.inputs.instance_name }}"
+        TF_VAR_ec2_name:  "${{ github.event.inputs.ec2-name }}"
       run: |
         cd tf-example/
         terraform init
