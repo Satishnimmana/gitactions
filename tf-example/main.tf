@@ -36,7 +36,8 @@ resource "aws_instance" "myec2vm" {
   ami = data.aws_ami.amzlinux2.id
   instance_type = "t2.micro"
   key_name      = "newkey"
-tags = {
+
+  tags = {
     Name = var.ec2_name
   }
 }
