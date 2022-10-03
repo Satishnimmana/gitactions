@@ -31,7 +31,7 @@ jobs:
     - name: Terraform Apply
       id:   apply
       env:
-        TF_VAR_instance_type:  ${{ github.event.inputs.instance-type }}
+        instance_type:  ${{ github.event.inputs.instance-type }}
       run: |
         cd tf-example/
         terraform init
