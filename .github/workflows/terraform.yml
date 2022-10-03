@@ -49,5 +49,4 @@ jobs:
       id : apply
       env:
        tf_VAR_instance_name: "${{ github.event.inputs.instance_name }}"
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
