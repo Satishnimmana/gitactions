@@ -19,8 +19,16 @@ data "aws_ami" "amzlinux2" {
     values = ["x86_64"]
   }
 }
+terraform {
+    backend "remote" {
+      organization = "awsclouds"
+    workspaces {
+        name = "clouds"
+        }
+    }
+}
 
-# provision to us-east-2 region
+# provision to us-east-1 region
 provider "aws" {
   region = "us-east-1"
 }
