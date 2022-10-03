@@ -6,8 +6,8 @@ on:
       instance-type:
         description: EC2 type
         required: true
-        default: "t2.micro", "t3.small", "t3.large"
-        type: list (string)
+        default: "t2.micro"
+        type: string
 jobs:
   terraform:
     name: 'Terraform'
