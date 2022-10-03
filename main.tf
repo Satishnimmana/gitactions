@@ -13,9 +13,9 @@ filter {
 }
 terraform {
     backend "remote" {
-      organization = "Smarttechcloud"
+      organization = "awsclouds"
     workspaces {
-        name = "smartaction"
+        name = "clouds"
         }
     }
 }

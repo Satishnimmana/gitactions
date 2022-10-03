@@ -3,7 +3,7 @@ name: 'Terraform-apply'
 on:
   workflow_dispatch:
     inputs:
-      ec2-name:
+      instance_name:
         description: EC2 name
         required: true
         default: ' '
@@ -36,7 +36,7 @@ jobs:
     - name: Terraform Plan
       id: plan
       env:
-       TF_VAR_ec2_name: "${{ github.event.inputs.ec2-name }}"
+       TF_VAR_instance_name: "${{ github.event.inputs.instance_name }}"
       run: terraform plan
       continue-on-error: true
 
@@ -48,6 +48,6 @@ jobs:
     - name: Terraform Apply
       id : apply
       env:
-       tf_var.ec2_name: "${{ github.event.inputs.ec2_name }}"
+       tf_VAR_instance_name: "${{ github.event.inputs.instance_name }}"
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
