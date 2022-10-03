@@ -32,13 +32,13 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
           terraform_wrapper: false
-    - name: Terraform Apply
-      id:   apply
+    - name: Terraform plan
+      id:   plan
       env:
-        tf_var.instance_type: " ${{ github.event.inputs.name }} "
+        tf_var_instance_type: " ${{ github.event.inputs.name }} "
       run: |
         cd tf-example/
         terraform init
-        terraform validate
-        terraform plan 
-        terraform apply -var= "instance_type= ${{ github.event.inputs.instance-type }}" -auto-approve
+        terraform validate -input=false -var-file=${{ tf_var_instance_type }}/tf-example/variables.tf -no-color
+        terraform plan -input=false -var-file=${{ tf_var_instance_type }}/tf-example/variables.tf -no-color
+       # terraform apply -var= "instance_type= ${{ github.event.inputs.instance-type }}" -auto-approve
