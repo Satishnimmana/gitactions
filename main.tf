@@ -1,15 +1,23 @@
 # use ubuntu 20 AMI for EC2 instance
-data "aws_ami" "ubuntu" {
-    most_recent = true
-filter {
-        name   = "name"
-        values = ["ubuntu/images/hvm-ssd/*20.04-amd64-server-*"]
-    }
-filter {
-        name   = "virtualization-type"
-        values = ["hvm"]
-    }
-
+data "aws_ami" "amzlinux2" {
+  most_recent      = true
+  owners           = ["amazon"]
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-gp2"]      ##this is a latest version AMI install the linux 
+  }
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
 }
 terraform {
     backend "remote" {
@@ -23,10 +31,10 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
-resource "aws_instance" "app_server" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
-  key_name      = "app-ssh-key"
+resource "aws_instance" "myec2vm" {
+  ami = data.aws_ami.amzlinux2.id
+  instance_type = "t2.micro"
+  key_name      = "newkey"
 tags = {
     Name = var.instance_name
   }
