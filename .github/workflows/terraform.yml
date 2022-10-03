@@ -35,10 +35,10 @@ jobs:
     - name: Terraform plan
       id:   plan
       env:
-        tf_var_instance_type: " ${{ github.event.inputs.name }} "
+        TF_VAR_instance_type: " ${{ github.event.inputs.name }} "
       run: |
         cd tf-example/
         terraform init
-        terraform validate -input=false -var-file=${{ tf_var_instance_type }}/tf-example/variables.tf -no-color
-        terraform plan -input=false -var-file=${{ tf_var_instance_type }}/tf-example/variables.tf -no-color
+        terraform validate -input=false -var-file=${{ TF_VAR_instance_type }}/tf-example/variables.tf -no-color
+        terraform plan -input=false -var-file=${{ TF_VAR_instance_type }}/tf-example/variables.tf -no-color
        # terraform apply -var= "instance_type= ${{ github.event.inputs.instance-type }}" -auto-approve
