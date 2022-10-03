@@ -3,11 +3,15 @@ name: Provision t2.micro EC2
 on:
   workflow_dispatch:
     inputs:
-      instance-type:
+       name:
         description: EC2 type
         required: true
-        default: "t2.micro"
-        type: string
+        type: choice
+        options:
+        - t3.micro
+        - t3.small
+        - t2.nano
+        
 jobs:
   terraform:
     name: 'Terraform'
@@ -31,7 +35,7 @@ jobs:
     - name: Terraform Apply
       id:   apply
       env:
-        instance_type:  ${{ github.event.inputs.instance-type }}
+        tf_var.instance_type: " ${{ github.event.inputs.name }} "
       run: |
         cd tf-example/
         terraform init
