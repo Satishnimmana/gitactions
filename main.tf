@@ -11,9 +11,17 @@ filter {
     }
 
 }
+terraform {
+    backend "remote" {
+      organization = "Smarttechcloud"
+    workspaces {
+        name = "smartaction"
+        }
+    }
+}
 # provision to us-east-2 region
 provider "aws" {
-  region  = "us-east-2"
+  region = "us-east-1"
 }
 resource "aws_instance" "app_server" {
   ami           = data.aws_ami.ubuntu.id
