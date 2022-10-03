@@ -34,10 +34,10 @@ provider "aws" {
 }
 resource "aws_instance" "myec2vm" {
   ami = data.aws_ami.amzlinux2.id
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
   key_name      = "newkey"
 
   tags = {
-    Name = var.instance_name
+    "Name" = "app servr"
   }
 }
