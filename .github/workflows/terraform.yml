@@ -49,4 +49,4 @@ jobs:
       id : apply
       env:
        tf_VAR_instance_name: "${{ github.event.inputs.instance_name }}"
-      run: terraform apply -auto-approve -input=false
+      run: terraform apply -auto-approve
