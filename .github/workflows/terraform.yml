@@ -7,10 +7,7 @@ on:
         description: EC2 type
         required: true
         type: string
-        options:
-        - t3.micro
-        - t3.small
-        - t2.nano
+        default: 't2.nano'
         
 jobs:
   terraform:
