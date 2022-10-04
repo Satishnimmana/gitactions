@@ -30,14 +30,14 @@ terraform {
 
 # provision to us-east-1 region
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-south-1"
 }
 resource "aws_instance" "myec2vm" {
   ami = data.aws_ami.amzlinux2.id
-  instance_type = "string"
+  instance_type = "${{ github.event.inputs.name }}"
   key_name      = "newkey"
 
   tags = {
-    "Name" = "app servr"
+    Name = "app servr"
   }
 }
