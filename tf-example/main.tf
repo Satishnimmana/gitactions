@@ -32,6 +32,7 @@ terraform {
 provider "aws" {
   region = "ap-south-1"
 }
+
 resource "aws_instance" "myec2vm" {
   ami = data.aws_ami.amzlinux2.id
   instance_type = " ${{ env.TF_VAR_INPUT_Name }}"
