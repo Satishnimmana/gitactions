@@ -40,8 +40,10 @@ jobs:
     - name: Terraform Apply
       id:   apply
       run: |
+        TF_VAR_ec2_name:  "${{ github.event.inputs.ec2-name }}"
+      run: |
         cd tf-example/
         terraform init 
         terraform validate 
-        terraform plan -var= ${{ env.TF_VAR_ec2_name}} -no-color -input=false
+        terraform plan 
       #  terraform apply -var = variables.tf -auto-approve
