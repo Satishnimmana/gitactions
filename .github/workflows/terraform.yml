@@ -3,7 +3,7 @@ name: Provision t2.micro EC2
 on:
   workflow_dispatch:
     inputs:
-       name:
+      name:
         description: EC2 type
         required: true
         type: choice
@@ -31,14 +31,14 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
       with:
-          terraform_wrapper: false
+        terraform_wrapper: false
     - name: Terraform plan
       id:   plan
       env:
-        TF_VAR_instance_type: " ${{ github.event.inputs.name }} "
+        TF_VAR_INPUT_Name: " ${{ github.event.inputs.name }} "
       run: |
         cd tf-example/
         terraform init
-        terraform validate -input=false -var-file=${{ TF_VAR_instance_type }}/tf-example/variables.tf -no-color
-        terraform plan -input=false -var-file=${{ TF_VAR_instance_type }}/tf-example/variables.tf -no-color
+        terraform validate -input=false -var-file=${{ TF_VAR_instance_type }}variables.tf -no-color
+        terraform plan -input=false -var-file=${{ TF_VAR_instance_type }}variables.tf -no-color
        # terraform apply -var= "instance_type= ${{ github.event.inputs.instance-type }}" -auto-approve
