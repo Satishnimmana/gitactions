@@ -6,7 +6,7 @@ on:
       instance-type:
         description: EC2 type
         required: true
-        type: choice
+        type: string
         options:
         - t3.micro
         - t3.small
@@ -41,4 +41,4 @@ jobs:
         terraform init
         terraform validate 
         terraform plan 
-        terraform apply -auto-approve -input=false
+        terraform apply -auto-approve

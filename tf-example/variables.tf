@@ -1,4 +1,3 @@
-#variable "instance_type" {
-#  description = "EC2 Instnace Type"
-# type = string
-#}
+variable "instance_type" {
+  type = string
+}

@@ -35,7 +35,7 @@ provider "aws" {
 
 resource "aws_instance" "myec2vm" {
   ami = data.aws_ami.amzlinux2.id
-  instance_type = "string "
+  instance_type = variables.instance_type
   key_name      = "newkey"
 
   tags = {
