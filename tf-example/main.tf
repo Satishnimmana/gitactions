@@ -35,7 +35,7 @@ provider "aws" {
 
 resource "aws_instance" "myec2vm" {
   ami = data.aws_ami.amzlinux2.id
-  instance_type = " ${{ env.TF_VAR_INPUT_Name }}"
+  instance_type = "${{ env.TF_VAR_INPUT_Name }}"
   key_name      = "newkey"
 
   tags = {
