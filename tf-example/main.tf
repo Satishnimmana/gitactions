@@ -19,6 +19,17 @@ data "aws_ami" "amzlinux2" {
     values = ["x86_64"]
   }
 }
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.16"
+    }
+  }
+  required_version = ">= 1.2.0"
+}
+
 terraform {
     backend "remote" {
       organization = "awsclouds"
@@ -35,10 +46,10 @@ provider "aws" {
 
 resource "aws_instance" "myec2vm" {
   ami = data.aws_ami.amzlinux2.id
-  instance_type = var.instance_type
+  instance_type = "t2.nano"
   key_name      = "newkey"
 
   tags = {
-    Name = "app servr"
+    Name = var.ec2_name
   }
 }

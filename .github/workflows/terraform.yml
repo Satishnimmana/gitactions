@@ -3,11 +3,11 @@ name: Provision t2.micro EC2
 on:
   workflow_dispatch:
     inputs:
-      instance-type:
-        description: EC2 type
+      ec2-name:
+        description: EC2 name
         required: true
         type: string
-        default: " t2.nano "
+        default: 'App Server'
         
 jobs:
   terraform:
@@ -18,8 +18,14 @@ jobs:
       AWS_SECRET_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
     steps:
     # Checkout the repository to the GitHub Actions runner
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '14'
     - name: Checkout
       uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '14' 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
@@ -32,7 +38,7 @@ jobs:
     - name: Terraform plan
       id:   apply
       env:
-        TF_VAR_INPUTS_INSTANCE_TYPE: " ${{ github.event.inputs.instance-type }} "
+        TF_VAR_ec2_name:  "${{ github.event.inputs.ec2-name }}"
       run: |
         cd tf-example/
         terraform init
