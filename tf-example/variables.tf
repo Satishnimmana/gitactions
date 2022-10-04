@@ -1,5 +1,4 @@
 
 variable "ec2_name" {
-  type = string
-  default = ${{ github.event.inputs.ec2-name }}
+  type = ${{secrets.TF_VAR_INSTANCE_TYPE}}
 }

@@ -36,11 +36,11 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_wrapper: false
-    - name: Terraform plan
+    - name: Terraform Apply
       id:   apply
       run: |
         cd tf-example/
-        terraform init
+        terraform init 
         terraform validate 
-        terraform plan -var-file=variables.tf  -no-color -input=false
-        terraform apply -var-file=variables.tf -auto-approve
+        terraform plan -var = variables.tf  -no-color -input=false
+        terraform apply -var = variables.tf -auto-approve
