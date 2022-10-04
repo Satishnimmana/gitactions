@@ -39,6 +39,6 @@ jobs:
       run: |
         cd tf-example/
         terraform init
-        terraform validate -input=false -var-file=${{ TF_VAR_INPUT_Name }}variables.tf -no-color
-        terraform plan -input=false -var-file=${{ TF_VAR_INPUT_Name }}variables.tf -no-color
+        terraform validate 
+        terraform plan 
        # terraform apply -var= "instance_type= ${{ github.event.inputs.instance-type }}" -auto-approve
