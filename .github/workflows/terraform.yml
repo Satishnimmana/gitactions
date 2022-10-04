@@ -41,4 +41,4 @@ jobs:
         terraform init
         terraform validate 
         terraform plan 
-       # terraform apply -var= "instance_type= ${{ github.event.inputs.instance-type }}" -auto-approve
+        terraform apply
