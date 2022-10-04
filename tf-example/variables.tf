@@ -1,3 +1,3 @@
 variable "instance_type" {
-  type = string
+  type = " ${ env.TF_VAR_INPUTS_INSTANCE_TYPE }"
 }

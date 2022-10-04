@@ -7,7 +7,7 @@ on:
         description: EC2 type
         required: true
         type: string
-        default: 't2.nano'
+        default: " t2.nano "
         
 jobs:
   terraform:
@@ -32,7 +32,7 @@ jobs:
     - name: Terraform plan
       id:   apply
       env:
-        TF_VAR_INPUT_INSTANCE_TYPE: " ${{ github.event.inputs.instance-type }} "
+        TF_VAR_INPUTS_INSTANCE_TYPE: " ${{ github.event.inputs.instance-type }} "
       run: |
         cd tf-example/
         terraform init
