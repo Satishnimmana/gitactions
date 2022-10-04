@@ -1,4 +1,4 @@
-name: Provision t2.micro EC2
+name: Provision EC2
 
 on:
   workflow_dispatch:
@@ -16,6 +16,7 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID : ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+      aws-region: ap-south-1
     steps:
     # Checkout the repository to the GitHub Actions runner
     - uses: actions/setup-node@v3
@@ -37,11 +38,9 @@ jobs:
         terraform_wrapper: false
     - name: Terraform plan
       id:   apply
-      env:
-        TF_VAR_ec2_name:  "${{ github.event.inputs.ec2-name }}"
       run: |
         cd tf-example/
         terraform init
         terraform validate 
-        terraform plan 
-        terraform apply -auto-approve
+        terraform plan -var-file=variables.tf  -no-color -input=false
+        terraform apply -var-file=variables.tf -auto-approve
