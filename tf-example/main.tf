@@ -30,15 +30,13 @@ terraform {
   required_version = ">= 1.2.0"
 }
 
-terraform {
-    backend "remote" {
-      organization = "awsclouds"
-    workspaces {
-        name = "clouds"
-        }
-    }
+backend_config:{
+      hostname: app.terraform.io
+      organization: awsclouds
+      token: ${{ secrets.TF_API_TOKEN }}
+      workspaces:
+        name: clouds # note there's no leading `-`
 }
-
 # provision to us-east-1 region
 provider "aws" {
   region = "ap-south-1"
