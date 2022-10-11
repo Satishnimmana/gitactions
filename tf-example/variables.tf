@@ -1,4 +1,4 @@
 
-variable "ec2_name" {
+variable "ec2_instance_name" {
   type = string
 }

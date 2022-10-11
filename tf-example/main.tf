@@ -50,6 +50,6 @@ resource "aws_instance" "myec2vm" {
   key_name      = "newkey"
 
   tags = {
-    Name = "var.ec2_name"
+    Name = "var.ec2_instance_name"
   }
 }
