@@ -3,7 +3,7 @@ name: Provision EC2
 on:
   workflow_dispatch:
     inputs:
-      ec2-name:
+      ec2_instance-name:
         description: EC2 name
         required: true
         type: string
@@ -41,10 +41,10 @@ jobs:
     - name: Terraform Apply
       id:   plan
       env:
-       TF_VAR_ec2_name:  "${{ github.event.inputs.ec2-name }}"
+       ec2_instance_name: "${{ github.event.inputs.ec2_instance-name }}"
       run: |
         cd tf-example/
         terraform init 
         terraform validate 
-        terraform plan -var="ec2_instance_name = TF_VAR_ec2_name" 
+        terraform plan -var="ec2_instance_name=env.ec2_instance_name" 
       #  terraform apply -var = variables.tf -auto-approve
