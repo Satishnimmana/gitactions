@@ -9,7 +9,7 @@ on:
         default: 'App Server'
         type: string
       ec2-type:
-        description: EC2 name
+        description: EC2 type
         required: true
         type: choice
         options:
