@@ -24,6 +24,6 @@ resource "aws_instance" "app_server" {
   key_name      = "windowskey"
   count = var.ec2_count
   tags = {
-    Name = var.ec2_instance_name-${count.index}
+    Name = var.ec2_instance_name-var.environment
   }
 }

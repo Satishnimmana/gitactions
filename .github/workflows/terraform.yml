@@ -19,7 +19,15 @@ on:
        description: EC2 count
        required: true
        default: '1'
-       type: string    
+       type: string
+      ec2-environment:
+       description: environment
+       required: true
+       type: choice
+       options:
+       - dev
+       - uat
+       - prod
 jobs:
   provision-ec2:
     runs-on: ubuntu-latest
@@ -44,6 +52,7 @@ jobs:
           TF_VAR_ec2_instance_name:  "${{ github.event.inputs.ec2-name }}"
           TF_VAR_ec2_instance_type:  "${{ github.event.inputs.ec2-type }}"
           TF_VAR_ec2_count:  "${{ github.event.inputs.ec2-count }}"
+          TF_VAR_environment:  "${{ github.event.inputs.ec2-environment}}"
         run: |
           cd tf-example/
           terraform init
