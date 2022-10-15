@@ -5,3 +5,6 @@ variable "ec2_instance_name" {
 variable "ec2_instance_type" {
   type = string
 }
+variable "ec2_count"{
+  type  = string
+}
