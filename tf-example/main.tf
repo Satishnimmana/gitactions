@@ -22,8 +22,9 @@ resource "aws_instance" "app_server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.ec2_instance_type
   key_name      = "windowskey"
+  environment  = var.ec2_environment
   count = var.ec2_count
   tags = {
-    Name= [ var.ec2_instance_name,var.ec2_environment ]
+    Name= "var.ec2_instance_name-${environment}"
   }
 }
