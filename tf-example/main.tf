@@ -32,14 +32,7 @@ terraform {
 ### Backend ###
 # S3
 ###############
-terraform {
-  backend "s3" {
-    bucket = "cloudbackend"
-    key = "cloud.tfstate"
-    region = "ap-south-1"
-  }
-}
-# provision to us-east-1 region
+provision to us-east-1 region
 provider "aws" {
   region = "ap-south-1"
 }
