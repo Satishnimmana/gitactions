@@ -20,6 +20,7 @@ jobs:
       
     steps:
     # Checkout the repository to the GitHub Actions runner
+    
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
@@ -29,7 +30,7 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_wrapper: false
-       
+    - uses: actions/checkout@v2   
     - name: Terraform Apply
       id:   plan
       env:
