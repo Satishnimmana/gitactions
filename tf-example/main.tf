@@ -29,13 +29,16 @@ terraform {
   }
   required_version = ">= 1.2.0"
 }
+### Backend ###
+# S3
+###############
 terraform {
-    backend "remote" {
-      organization = "Smarttechcloud"
-    workspaces {
-        name = "smartaction"
-    }
+  backend "s3" {
+    bucket = "cloudbackend"
+    key = "cloud.tfstate"
+    region = "ap-south-1"
   }
+}
 }
 # provision to us-east-1 region
 provider "aws" {
