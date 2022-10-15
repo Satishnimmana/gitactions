@@ -1,47 +1,29 @@
-# use ubuntu 20 AMI for EC2 instance
-data "aws_ami" "amzlinux2" {
-  most_recent      = true
-  owners           = ["amazon"]
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-hvm-*-gp2"]      ##this is a latest version AMI install the linux 
-  }
-  filter {
-    name   = "root-device-type"
-    values = ["ebs"]
-  }
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
-}
+data "aws_ami" "ubuntu" {
+    most_recent = true
 
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.16"
+    filter {
+        name   = "name"
+        values = ["ubuntu/images/hvm-ssd/*20.04-amd64-server-*"]
     }
-  }
-  required_version = ">= 1.2.0"
-}
-### Backend ###
-# S3
-###############
-provider "aws" {
-  region = "ap-south-1"
+
+    filter {
+        name   = "virtualization-type"
+        values = ["hvm"]
+    }
+    
+    owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "myec2vm" {
-  ami = data.aws_ami.amzlinux2.id
-  instance_type = "t2.nano"
-  key_name      = "newkey"
+provider "aws" {
+  region  = "us-east-2"
+}
+
+resource "aws_instance" "app_server" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t3.micro"
+  key_name      = "app-ssh-key"
 
   tags = {
-    Name = "var.ec2_instance_name"
+    Name = var.ec2_instance_name
   }
 }
