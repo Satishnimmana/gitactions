@@ -20,8 +20,8 @@ on:
        required: true
        default: '1'
        type: string
-      ec2-environment:
-       description: environment
+      ec2-environments:
+       description: environments
        required: true
        type: choice
        options:
@@ -52,7 +52,7 @@ jobs:
           TF_VAR_ec2_instance_name:  "${{ github.event.inputs.ec2-name }}"
           TF_VAR_ec2_instance_type:  "${{ github.event.inputs.ec2-type }}"
           TF_VAR_ec2_count:  "${{ github.event.inputs.ec2-count }}"
-          TF_VAR_environment:  "${{ github.event.inputs.ec2-environment}}"
+          TF_VAR_environment:  "${{ github.event.inputs.ec2-environments}}"
         run: |
           cd tf-example/
           terraform init
