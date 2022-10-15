@@ -25,6 +25,6 @@ resource "aws_instance" "app_server" {
   environments  = var.ec2_environment
   count = var.ec2_count
   tags = {
-    "Name" = "var.ec2_instance_name-${{environments}}"
+    Name= var.ec2_instance_name-'${{environments}}'
   }
 }
