@@ -29,13 +29,13 @@ terraform {
   }
   required_version = ">= 1.2.0"
 }
-
-backend_config:{
-      hostname: app.terraform.io
-      organization: awsclouds
-      token: ${{ secrets.TF_API_TOKEN }}
-      workspaces:
-        name: clouds # note there's no leading `-`
+terraform {
+    backend "remote" {
+      organization = "Smarttechcloud"
+    workspaces {
+        name = "smartaction"
+    }
+  }
 }
 # provision to us-east-1 region
 provider "aws" {
