@@ -11,7 +11,7 @@ on:
       ec2-type:
         description: EC2 name
         required: true
-        default: choice
+        type: choice
         options:
         - t3.micro
         - t3.small
