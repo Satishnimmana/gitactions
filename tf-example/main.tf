@@ -32,7 +32,6 @@ terraform {
 ### Backend ###
 # S3
 ###############
-provision to us-east-1 region
 provider "aws" {
   region = "ap-south-1"
 }
