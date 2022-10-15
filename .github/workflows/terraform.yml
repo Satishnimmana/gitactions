@@ -8,6 +8,12 @@ on:
         required: true
         default: 'App Server'
         type: string
+      ec2-type:
+        description: EC2 name
+        required: true
+        default: string
+          - t3.micro
+          - t2.nano
 jobs:
   provision-ec2:
     runs-on: ubuntu-latest
@@ -30,6 +36,7 @@ jobs:
         id:   apply
         env:
           TF_VAR_ec2_instance_name:  "${{ github.event.inputs.ec2-name }}"
+          TF_VAR_ec2_instance_type:  "${{ github.event.inputs.ec2-type }}"
         run: |
           cd tf-example/
           terraform init
