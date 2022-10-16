@@ -29,7 +29,7 @@ provider "aws" {
   region  = var.region
 }
 
-resource "aws_instance" "app_server" {
+resource "aws_instance" "linux" {
   ami           = data.aws_ami.os[var.ami_name].id
   instance_type = var.ec2_instance_type
   key_name      = "newkey"
