@@ -21,5 +21,4 @@ variable "ami_name" {
 }
 variable "environment" {
   type = string
-  default = "dev"
 }
