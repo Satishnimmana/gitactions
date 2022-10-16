@@ -19,6 +19,3 @@ variable "ami_name" {
     error_message = "Invalid ami name, allowed_values = [amazon  RHEL ubuntu]."
   }
 }
-variable "environment" {
-  type = string
-}
