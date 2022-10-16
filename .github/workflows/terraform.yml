@@ -38,7 +38,7 @@ on:
       Availability_zone1:
         description: Select Availability Zones
         required: true 
-        type: list(string)
+        type: string
         options:
          - None
          - ap-south-1a
@@ -46,7 +46,7 @@ on:
       Availability_zone2:
         description: Select Availability Zones
         required: true 
-        type: list(string)
+        type: string
         options:
          - None
          - ap-south-1a
