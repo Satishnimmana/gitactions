@@ -27,6 +27,15 @@ on:
        options:
         - ap-south-1
         - us-east-1
+      Os-type:
+        description: Select Os
+        required: true 
+        type: choice
+        options:
+         - RHEL
+         - amazon
+         - ubuntu
+
 jobs:
   provision-ec2:
     runs-on: ubuntu-latest
@@ -52,6 +61,7 @@ jobs:
           TF_VAR_ec2_instance_type:  "${{ github.event.inputs.ec2-type }}"
           TF_VAR_ec2_count:  "${{ github.event.inputs.ec2-count }}"
           TF_VAR_region:  "${{ github.event.inputs.region}}"
+          TF_VAR_ami_name: "${{github.event.inputs.Os-type}}"
         run: |
           cd tf-example/
           terraform init

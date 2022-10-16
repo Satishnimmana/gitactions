@@ -1,17 +1,24 @@
-data "aws_ami" "ubuntu" {
-    most_recent = true
-
-    filter {
-        name   = "name"
-        values = ["ubuntu/images/hvm-ssd/*20.04-amd64-server-*"]
+locals {
+    allowed_os = {
+        "amazon": {owner: "amazon",       filter: "amzn2-ami-hvm*"},
+        "RHEL":   {owner: "amazon",       filter: "*RHEL*"},
+        "ubuntu": {owner: "099720109477", filter: "*ubuntu-bionic-18.04-amd64-*"},
     }
+}
+validation {
+  condition     = can(regex("amazon|RHEL|ubuntu", var.ami_name))
+  error_message = "Invalid ami name, allowed_values = [amazon RHEL ubuntu]."
+}
 
-    filter {
-        name   = "virtualization-type"
-        values = ["hvm"]
-    }
-    
-    owners = ["099720109477"] # Canonical
+data "aws_ami" "os" {
+  for_each = local.allowed_os
+
+  most_recent = true
+  owners      = [each.value.owner]
+  filter {
+    name   = "name"
+    values = [each.value.filter]
+  }
 }
 
 provider "aws" {
@@ -19,7 +26,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "app_server" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.os[var.ami_name].id
   instance_type = var.ec2_instance_type
   key_name      = "newkey"
   count = var.ec2_count
