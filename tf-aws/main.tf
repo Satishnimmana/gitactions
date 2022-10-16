@@ -1,7 +1,6 @@
 
 provider "aws" {
   region  = var.region
-  environment = var.environment
 }
 
 resource "aws_instance" "linux" {
@@ -10,6 +9,6 @@ resource "aws_instance" "linux" {
   key_name      = "newkey"
   count = var.ec2_count
   tags = {
-    Name= "${var.ec2_instance_name}-${var.environment}"
+    Name= "${var.ec2_instance_name}-${local.environment}"
   }
 }
