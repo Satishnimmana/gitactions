@@ -6,7 +6,6 @@ on:
       ec2-name:
         description: EC2 name
         required: true
-        default: 'App Server'
         type: string
       ec2-type:
         description: EC2 type
