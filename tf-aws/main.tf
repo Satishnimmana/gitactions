@@ -8,8 +8,8 @@ resource "aws_instance" "linux" {
   instance_type = var.ec2_instance_type
   key_name      = "newkey"
   count = var.ec2_count
-  subnet_id =var.vpc_availability_zones
+  environments = var.environment
   tags = {
-    Name= var.ec2_instance_name
+    Name= "${var.ec2_instance_name}-${var.environment}"
   }
 }

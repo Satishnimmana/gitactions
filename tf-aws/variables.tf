@@ -19,7 +19,6 @@ variable "ami_name" {
     error_message = "Invalid ami name, allowed_values = [amazon  RHEL ubuntu]."
   }
 }
-variable "vpc_availability_zones" {
-  description = "VPC Availability Zones"
+variable "environment" {
   type = string
 }
