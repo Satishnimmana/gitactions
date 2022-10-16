@@ -5,9 +5,13 @@ locals {
         "ubuntu": {owner: "099720109477", filter: "*ubuntu-bionic-18.04-amd64-*"},
     }
 }
-validation {
-  condition     = can(regex("amazon|RHEL|ubuntu", var.ami_name))
-  error_message = "Invalid ami name, allowed_values = [amazon RHEL ubuntu]."
+variable "ami_name" {
+  default = "ubuntu"
+
+  validation {
+    condition     = can(regex("amazon|RHEL|ubuntu", var.ami_name))
+    error_message = "Invalid ami name, allowed_values = [amazon  RHEL ubuntu]."
+  }
 }
 
 data "aws_ami" "os" {
