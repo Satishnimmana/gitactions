@@ -8,6 +8,6 @@ variable "ec2_instance_type" {
 variable "ec2_count"{
   type  = string
 }
-variable "environment"{
+variable "region"{
   type = string
 }

@@ -15,7 +15,7 @@ data "aws_ami" "ubuntu" {
 }
 
 provider "aws" {
-  region  = "ap-south-1"
+  region  = var.region
 }
 
 resource "aws_instance" "app_server" {
@@ -24,6 +24,6 @@ resource "aws_instance" "app_server" {
   key_name      = "windowskey"
   count = var.ec2_count
   tags = {
-    Name= var.ec2_instance_name-"${var.environment}"
+    Name= var.ec2_instance_name
   }
 }

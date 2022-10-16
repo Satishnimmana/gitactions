@@ -20,14 +20,13 @@ on:
        required: true
        default: '1'
        type: string
-      ec2-environments:
-       description: environments
+      region:
+       description: region
        required: true
        type: choice
        options:
-       - dev
-       - uat
-       - prod
+        - ap-south-1
+        - us-east-1
 jobs:
   provision-ec2:
     runs-on: ubuntu-latest
@@ -52,7 +51,7 @@ jobs:
           TF_VAR_ec2_instance_name:  "${{ github.event.inputs.ec2-name }}"
           TF_VAR_ec2_instance_type:  "${{ github.event.inputs.ec2-type }}"
           TF_VAR_ec2_count:  "${{ github.event.inputs.ec2-count }}"
-          TF_VAR_environment:  "${{ github.event.inputs.ec2-environments}}"
+          TF_VAR_region:  "${{ github.event.inputs.region}}"
         run: |
           cd tf-example/
           terraform init
