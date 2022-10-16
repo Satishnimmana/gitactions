@@ -35,7 +35,22 @@ on:
          - RHEL
          - amazon
          - ubuntu
-
+      Availability_zone1:
+        description: Select Availability Zones
+        required: true 
+        type: list(string)
+        options:
+         - None
+         - ap-south-1a
+         - ap-south-1b
+      Availability_zone2:
+        description: Select Availability Zones
+        required: true 
+        type: list(string)
+        options:
+         - None
+         - ap-south-1a
+         - ap-south-1b
 jobs:
   provision-ec2:
     runs-on: ubuntu-latest
@@ -62,6 +77,8 @@ jobs:
           TF_VAR_ec2_count:  "${{ github.event.inputs.ec2-count }}"
           TF_VAR_region:  "${{ github.event.inputs.region}}"
           TF_VAR_ami_name: "${{github.event.inputs.Os-type}}"
+          Tf_VAR_vpc_availability_zones: "${{github.event.inputs.Availability_zone1}}"
+          Tf_VAR_vpc_availability_zones: "${{github.event.inputs.Availability_zone2}}"
         run: |
           cd tf-aws/
           terraform init
