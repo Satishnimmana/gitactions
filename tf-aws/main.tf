@@ -10,6 +10,6 @@ resource "aws_instance" "linux" {
   key_name      = "newkey"
   count = var.ec2_count
   tags = {
-    Name= "${var.ec2_instance_name}-${aws.environment}"
+    Name= "${var.ec2_instance_name}-${var.environment}"
   }
 }
