@@ -19,8 +19,6 @@ on:
        description: region
         required: true
         type: string
-  
-
 jobs:
   provision-ec2:
     runs-on: ubuntu-latest
