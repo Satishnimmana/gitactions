@@ -11,8 +11,8 @@ on:
        description: Ebs volume-type
        required: true
        type: string
-       
-  CreateEBS:
+jobs:       
+  Create-EBS:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
