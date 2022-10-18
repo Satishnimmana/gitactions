@@ -7,10 +7,12 @@ on:
        description: region
        required: true
        type: string
-      ebs-size:
-       description: Ebs volume size
+      volume-type:
+       description: Ebs volume-type
        required: true
-       type: string
+       type: choice
+        - General Purpose SSD (gp3)
+        - General Purpose SSD (gp2)
 jobs:
   provision-ec2:
     runs-on: ubuntu-latest
@@ -33,7 +35,7 @@ jobs:
         id:   apply
         env:
           TF_VAR_region:  "${{ github.event.inputs.region}}"
-          TE_VAR_size: "${{ github.event.inputs.ebs-size}}"
+          TE_VAR_volume_type: "${{ github.event.inputs.volume-type}}"
         run: |
           cd tf-ebs/
           terraform init
