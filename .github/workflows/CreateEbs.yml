@@ -36,7 +36,7 @@ jobs:
         id:   apply
         env:
           TF_VAR_region:  "${{ github.event.inputs.region}}"
-          TE_VAR_volume_type: "${{ github.event.inputs.volume-type}}"
+          TE_VAR_type: "${{ github.event.inputs.volume-type}}"
         run: |
           cd tf-ebs/
           terraform init
