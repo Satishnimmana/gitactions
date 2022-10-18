@@ -1,7 +1,7 @@
 #variable "ebs_name" {
 #  type = string
 #}
-variable "volume_type" {
+variable "volume_size" {
   type = string
 }
 #variable "ebs_availability_zone" {

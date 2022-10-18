@@ -3,9 +3,8 @@ provider "aws" {
   region  = var.region
 }
 resource "aws_ebs_volume" "ebsvolume" {
-  type = var.volume_type
   availability_zone = "ap-south-1a"
-  size = 5
+  volume size = var.volume_size
   encrypted = false
   tags = {
     name = "newvolume"
