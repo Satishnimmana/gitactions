@@ -24,8 +24,8 @@ on:
        required: true
        type: choice
        options:
-        - Mumbai
-        - N.Viginia
+        - Asia Pacific(Mumbai)
+        - Us East(N.Viginia)
       Os-type:
         description: Select Os
         required: true 
