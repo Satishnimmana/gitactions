@@ -15,6 +15,12 @@ on:
         description: availability-zone
         required: true
         type: string
+      region:
+       description: region
+        required: true
+        type: string
+  
+
 jobs:
   provision-ec2:
     runs-on: ubuntu-latest
@@ -39,6 +45,7 @@ jobs:
           TF_VAR_ebs_name:  "${{ github.event.inputs.EBS-name }}"
           TF_VAR_ebs_size:  "${{ github.event.inputs.EBS-size }}"
           TF_VAR_ebs_availability_zone:  "${{ github.event.inputs.availabilty-zone }}"
+          TF_VAR_region:  "${{ github.event.inputs.region}}"
         run: |
           cd tf-ebs/
           terraform init

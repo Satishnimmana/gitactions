@@ -7,3 +7,6 @@ variable "ebs_size" {
 variable "ebs_availability_zone" {
   type = string
 }
+variable "region"{
+  type = string
+}
