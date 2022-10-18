@@ -8,9 +8,9 @@ variable "ec2_instance_type" {
 variable "ec2_count"{
   type  = string
 }
-#variable "region"{
-#  type = string
-#}
+variable "region"{
+  type = string
+}
 variable "ami_name" {
   default = "ubuntu"
 
@@ -20,10 +20,3 @@ variable "ami_name" {
   }
 }
 
-variable "region" {
-  type = list(map)
-  default = {
-    "Mumbai" = "ap-south-1"
-    "N.Viginia" = "us-east-1"
-  }
-}
