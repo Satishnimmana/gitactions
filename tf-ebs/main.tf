@@ -4,7 +4,7 @@ provider "aws" {
 }
 resource "aws_ebs_volume" "ebsvolume" {
   availability_zone = "ap-south-1a"
-  size = var.ebs_size
+  size = var.size
   encrypted = false
   tags = {
     name = "newvolume"
