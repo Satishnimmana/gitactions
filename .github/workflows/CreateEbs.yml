@@ -11,6 +11,7 @@ on:
        description: Ebs volume-type
        required: true
        type: choice
+       options:
         - General Purpose SSD (gp3)
         - General Purpose SSD (gp2)
 jobs:
