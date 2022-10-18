@@ -8,7 +8,7 @@ on:
        required: true
        type: string
       volume-size:
-       description: Ebs volume-type
+       description: Ebs volume-size
        required: true
        type: string
 jobs:       
