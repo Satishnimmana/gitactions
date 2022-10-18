@@ -21,7 +21,7 @@ variable "ami_name" {
 }
 
 variable "region" {
-  type = "map"
+  type = list(map)
   default = {
     "Mumbai" = "ap-south-1"
     "N.Viginia" = "us-east-1"
