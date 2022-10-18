@@ -24,8 +24,8 @@ on:
        required: true
        type: choice
        options:
-        - ap-south-1
-        - us-east-1
+        - Mumbai
+        - N.Viginia
       Os-type:
         description: Select Os
         required: true 
