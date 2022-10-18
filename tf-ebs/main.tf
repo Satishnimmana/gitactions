@@ -2,13 +2,12 @@
 provider "aws" {
   region  = var.region
 }
-resource "aws_ebs_volume" "ebs_volume" {
-#  volume_id   = aws_ebs_volume.ebs_volume.id 
-  availability_zone = var.ebs_availability_zone
-  size              = var.ebs_size
-  type              = "gp2"
-  
+resource "aws_ebs_volume" "ebsvolume" {
+  availability_zone = "ap-south-1a"
+  size = 10
+  encrypted = false
   tags = {
-    Name = var.ebs_name
+    name = "newvolume"
   }
+
 }

@@ -3,18 +3,6 @@ name: CreateEBS
 on:
   workflow_dispatch:
     inputs:
-      EBS-name:
-        description: EBS name
-        required: true
-        type: string
-      EBS-size:
-        description: EC2 size
-        required: true
-        type: string
-      availability-zone:
-        description: availability-zone
-        required: true
-        type: string
       region:
        description: region
        required: true
@@ -40,9 +28,6 @@ jobs:
       - name: Terraform apply
         id:   apply
         env:
-          TF_VAR_ebs_name:  "${{ github.event.inputs.EBS-name }}"
-          TF_VAR_ebs_size:  "${{ github.event.inputs.EBS-size }}"
-          TF_VAR_ebs_availability_zone:  "${{ github.event.inputs.availabilty-zone }}"
           TF_VAR_region:  "${{ github.event.inputs.region}}"
         run: |
           cd tf-ebs/
