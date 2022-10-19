@@ -26,13 +26,7 @@ on:
        options:
         - ap-south-1
         - us-east-1
-      subnet-zone:
-       description: Subnet zone
-       required: true
-       type: choice
-       options:
-        - ap-south-1a
-        - ap-south-1b
+      
       Os-type:
         description: Select Os
         required: true 
