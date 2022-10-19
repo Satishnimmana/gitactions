@@ -6,6 +6,7 @@ provider "aws" {
 resource "aws_instance" "linux" {
   ami           = data.aws_ami.os[var.ami_name].id
   instance_type = var.ec2_instance_type
+  subnet = var.subnet_1a
   key_name      = "newkey"
   count = var.ec2_count
   tags = {
