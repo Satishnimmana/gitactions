@@ -62,7 +62,6 @@ jobs:
         with:
           aws-access-key-id: '${{ secrets.AWS_ACCESS_KEY_ID }}'
           aws-secret-access-key: '${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}'
-          aws-region: ap-south-1
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -76,7 +75,7 @@ jobs:
           TF_VAR_region:  "${{ github.event.inputs.region}}"
           TF_VAR_ami_name: "${{github.event.inputs.Os-type}}"
           TF_VAR_environment: "${{github.event.inputs.ec2-environment}}"
-          TF_VAR_subnet_1a: "${{github.event.inputs.subnet-zone}}"
+          TF_VAR_subnet_id: "${{github.event.inputs.subnet-zone}}"
         run: |
           cd tf-aws/
           terraform init

@@ -22,6 +22,6 @@ variable "ami_name" {
 variable"environment"{
   type = string
 }
-variable"subnet_1a"{
+variable"subnet_id"{
   type = string
 }
