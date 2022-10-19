@@ -34,6 +34,14 @@ on:
          - RHEL
          - amazon
          - ubuntu
+      ec2-environment:
+        description: Select environment
+        required: true 
+        type: choice
+        options:
+         - DEV
+         - UAT
+         - PROD   
 jobs:
   provision-ec2:
     runs-on: ubuntu-latest
@@ -60,6 +68,7 @@ jobs:
           TF_VAR_ec2_count:  "${{ github.event.inputs.ec2-count }}"
           TF_VAR_region:  "${{ github.event.inputs.region}}"
           TF_VAR_ami_name: "${{github.event.inputs.Os-type}}"
+          TF_VAR_environment: "${{github.event.inputs.ec2-environment}}"
         run: |
           cd tf-aws/
           terraform init
