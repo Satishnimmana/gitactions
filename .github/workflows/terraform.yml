@@ -48,7 +48,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-    
+      - uses: actions/setup-python@v3
+        with:
+          python:3.9-alpine3.13
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
